@@ -402,6 +402,35 @@ plt.grid(axis='y', linestyle='--', alpha=2.0)
 
 plt.tight_layout()
 plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+![alt text](<data/Lowest Accidents per Aircraft.png>)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 2. Specific features associated with lower risk
 plt.figure(figsize=(10, 6))
 
