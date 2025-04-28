@@ -483,7 +483,7 @@ plt.show()
 
 
 
-![png](<images\image.png>)
+![png](images\image.png)
 
 
 
