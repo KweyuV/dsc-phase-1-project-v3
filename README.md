@@ -34,14 +34,26 @@ df = pd.read_csv('data\Aviation_Data.csv', low_memory = False)
 ### Data exploration
 We proceed on by performing preliminary data exploring on our dataframe, which is denoted as  **df**. This process aids us to understand our data properties, types and structures.
 Here’s a structured breakdown of our dataset’s initial inspection, highlighting key issues.
+
+```python
 # For initial Checks:
 # Use the df.head method inspects the first 5 rows in our dataframe.
-df.head()           
-# df.info() summarizes the dataset's structure.
+df.head()   
+```
 
+
+
+```python
+# df.info() summarizes the dataset's structure.
 df.info()
 
+
+
 print(f"Count of null values in column (Model) :", df['Model'].isnull().sum()) 
+
+```
+
+
 The output gives us some useful insights about our dataframe:
 1. **Size**: We have 90348 entries that contains missing values. (eg. **Model** column that has 1551 nulls values out of 90348 rows.)
 
@@ -50,11 +62,106 @@ The output gives us some useful insights about our dataframe:
 3. **Memory**: 21.4+ MB that is manageable; no need to downcast yet.
 
 
-
+```python
 # Descriptive statistics
 # .describe() method
 
 df.describe()
+```
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Number.of.Engines</th>
+      <th>Total.Fatal.Injuries</th>
+      <th>Total.Serious.Injuries</th>
+      <th>Total.Minor.Injuries</th>
+      <th>Total.Uninjured</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>82805.000000</td>
+      <td>77488.000000</td>
+      <td>76379.000000</td>
+      <td>76956.000000</td>
+      <td>82977.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>1.146585</td>
+      <td>0.647855</td>
+      <td>0.279881</td>
+      <td>0.357061</td>
+      <td>5.325440</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.446510</td>
+      <td>5.485960</td>
+      <td>1.544084</td>
+      <td>2.235625</td>
+      <td>27.913634</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>2.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>8.000000</td>
+      <td>349.000000</td>
+      <td>161.000000</td>
+      <td>380.000000</td>
+      <td>699.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
 The code shows a focused analysis of the numeric columns in the dataset (**Number.of.Engines, Total.Fatal.Injuries, Total.Serious.Injuries, Total.Minor.Injuries, Total.Uninjured**). 
 
 If we look at some of the columns , we realize that :
@@ -87,12 +194,17 @@ If we look at some of the columns , we realize that :
 
         Max: 699 uninjured (likely a survivable commercial jet incident)
 
+```python
 # Missing Values
 # df.isnull() method is used to count missing values per column.
 missing_null = df.isnull().sum()
 missing_percent = df.isnull().mean() * 100          # converts to percentage
 print(missing_null.sort_values(ascending=False)) # returns columns in descending order
-According to the output above we can categorize our data into 4 Comprehensive Missing Data Analysis groups:
+
+```
+
+
+According to the code above we can categorize our data into 4 Comprehensive Missing Data Analysis groups:
 
 1. **Critical Columns (High Priority consider dropping rows) :**
 
@@ -138,11 +250,17 @@ In this section we shall be effectively handling the missing data and the follow
 - Handling missing data (*critical columns, numeric columns, categorical columns*)
 
 - Fixing Data Types
+
+```python
 #  Drop Irrelevant Columns
 
 cols_to_drop = ['FAR.Description','Schedule', 'Air.carrier', 'Aircraft.Category', 'Latitude', 'Longitude', 'Airport.Code', 'Airport.Name']
 aviation_data = df.drop(columns=cols_to_drop)
 missing_percent[missing_percent > 40] #drop all columns with missing values that are above 40%.
+
+```
+
+```python
 # Handling Missing Data
 
 ## Critical Columns - we are removing rows with missing data in critical columns.
@@ -161,6 +279,9 @@ aviation_data[cat_cols] = aviation_data[cat_cols].fillna('Unknown')
 ### remove 0 values from the value_counts() of the 'Number.of.Engines' column in aviation_data
 aviation_data[aviation_data['Number.of.Engines'] != 0]
 
+```
+
+```python
 # Fix Data Types
 
 ## Convert Event.Date column to datetime:
@@ -179,6 +300,9 @@ aviation_data['Weather.Condition'] = aviation_data['Weather.Condition'].str.uppe
 # Replace unknown/missing/ambiguous entries with 'UNKNOWN' in Weather.condition column
 unknown_terms = ['UNK', 'UNKNOWN', 'Unk', '']
 aviation_data['Weather.Condition'] = aviation_data['Weather.Condition'].replace(unknown_terms, 'UNK')
+
+```
+
 The dataset has gone through data cleaning and now requires a detailed analysis leading to visualizations. The key questions are about accident rates, features affecting risk, and external factors.
 
     Take note that the dataset has reduced from (90348 rows and 31 columns) to (80885 rows and 23 columns)
@@ -204,6 +328,8 @@ Accident rates is calculated by counting accidents per model. But to get a rate,
 **Assumption:**
 
 Each **Registration.Number** represents a unique aircraft.
+
+```python
 # Calculate accidents per model
 accident_analysis = aviation_data.groupby('Model').agg(Total_Accidents=('Event.Date', 'count'),Unique_Aircraft=('Registration.Number', 'nunique')).reset_index()
 
@@ -229,7 +355,11 @@ print("Lowest Accidents per Aircraft (Make)") #Heading
 print("-" * 35) # dotted lines
 print(aviation_data['Make'].head(100).value_counts()) # prints the top 100 Makes
 print(f"The most repeated Aircraft is:",aviation_data['Make'].head(100).mode()) # prints the most repeated Aircraft make in the top 100
-In the above output it can be noted that **Cessna Aicraft** has reported the highest number of planes **(43)** in the top 100 list of aircafts with the lowest number of accidents per flight.
+
+```
+
+
+In the above code it can be noted that **Cessna Aicraft** has reported the highest number of planes **(43)** in the top 100 list of aircafts with the lowest number of accidents per flight.
 
 
 **Interpretation:**
@@ -285,6 +415,9 @@ The code analyzes aviation accident data to evaluate safety metrics for differen
 - Lowest fatality rate first (safest)
 
 - Then by highest number of accidents (for statistical significance)
+
+```python
+
 # Feature 1: Engine Type
 # groupby('Engine.Type') - Groups the DataFrame aviation_data by the column Engine.Type
 # .agg()used with two metrics: Counts the number of accidents (Event.Date) per engine type in  and Counts accidents where Total.Fatal.Injuries > 0 (at least one fatality).
@@ -317,7 +450,8 @@ for idx, row in safest_manufacturers.head(2).iterrows():
     print(f"{row['Make']:<25} {row['Engine.Type']:<25} {row['Fatality_Rate']:<15.3f} {row['Total_Accidents']:<10}")
 
 
-The output prints a formatted table showing the top 2 safest manufacturers meeting the accident threshold, indicating that:
+```
+The code prints a formatted table showing the top 2 safest manufacturers meeting the accident threshold, indicating that:
 
  **Cessna (Reciprocating Engine)** stands out from the other aircrafts.
 
@@ -341,10 +475,15 @@ The output prints a formatted table showing the top 2 safest manufacturers meeti
 #### 3. How do external factors impact risk?
 In the analysis below we shall mainly focus on weather conditions for the aircrafts and deduce insightful findings that can be used as a basis for advising the stakeholder on usage of the Aircrafts.
 
+```python
 # Weather Analysis
 weather_risk = aviation_data.groupby('Weather.Condition').agg(Total_Accidents=('Event.Date', 'count'),Fatal_Accidents=('Total.Fatal.Injuries', lambda x: (x > 0).sum())).reset_index()
 weather_risk['Fatality_Rate'] = weather_risk['Fatal_Accidents'] / weather_risk['Total_Accidents']
 weather_risk
+
+```
+
+
 ##### 1. IMC (Instrument Meteorological Conditions) is the Most Dangerous
 
 - **Fatality Rate: 57.5%**
@@ -384,11 +523,18 @@ This process will help the project stakeholder understand the value or success o
 
 Before we carry out any visualizations, we shall have to import the relevant librabries. For this project we shall make use **matplotlib (imported as plt)** and **numpy (imported as np)** libraries.
 
+```python
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 %matplotlib inline
+
+```
+
 1. Which aircraft models have the lowest accident rates
+
+```python
+
 # Create the plot
 plt.figure(figsize=(10, 6))
 safest_models_with_make.plot(kind='bar', color='blue')
@@ -403,6 +549,7 @@ plt.grid(axis='y', linestyle='--', alpha=2.0)
 plt.tight_layout()
 plt.show()
 
+```
 
 
 
@@ -410,28 +557,14 @@ plt.show()
 
 
 
-
-
-
-
-
-
-![alt text](<data/Lowest Accidents per Aircraft.png>)
-
-
-
-
-
-
-
-
-
-
+![alt text](images\image.png)
 
 
 
 
 2. Specific features associated with lower risk
+
+```python
 plt.figure(figsize=(10, 6))
 
 # Create horizontal bar plot (sorted by fatality rate)
@@ -442,7 +575,19 @@ plt.title('Safest Manufacturers (Fatality Rate)', fontsize=16)
 plt.xlabel('Fatality Rate', fontsize=14)
 plt.ylabel('Manufacturer', fontsize=14)
 plt.grid(axis='x', linestyle='--', alpha=0.9)
+
+```
+
+
+
+
+![alt text](images\image-1.png)
+
+
 3. Specific features associated with lower risk
+
+```python
+
 plt.figure(figsize=(10, 6))
 sns.barplot(x='Weather.Condition', y='Fatality_Rate', data=weather_risk.sort_values('Fatality_Rate', ascending=False))
 plt.title('Fatality Rate by Weather Condition', fontsize=16)
@@ -450,6 +595,13 @@ plt.xlabel('Weather Condition', fontsize=14)
 plt.ylabel('Fatality Rate', fontsize=14)
 plt.grid(axis='y', linestyle='--', alpha=2.0)
 plt.show()
+
+```
+
+
+![alt text](images\image-2.png)
+
+
 ### RECOMMENDATION
 Based on our analysis of fatality rates and weather conditions, here’s why Cessna Aircraft with reciprocating engines are the optimal choice for your aviation expansion
 #### 1. Lower Fatality Rates in High-Risk Weather Conditions
