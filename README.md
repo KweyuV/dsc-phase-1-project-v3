@@ -3,7 +3,7 @@
 Please fill out:
 * Student name: VALENTINE MARANGALA KWEYU
 * Student pace: part time
-* Scheduled project review date/time: 
+* Scheduled project review date/time: 29/04/2025 
 * Instructor name: MWIKALI
 * Blog post URL: 
 
@@ -68,99 +68,7 @@ The output gives us some useful insights about our dataframe:
 
 df.describe()
 ```
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
 
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Number.of.Engines</th>
-      <th>Total.Fatal.Injuries</th>
-      <th>Total.Serious.Injuries</th>
-      <th>Total.Minor.Injuries</th>
-      <th>Total.Uninjured</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>count</th>
-      <td>82805.000000</td>
-      <td>77488.000000</td>
-      <td>76379.000000</td>
-      <td>76956.000000</td>
-      <td>82977.000000</td>
-    </tr>
-    <tr>
-      <th>mean</th>
-      <td>1.146585</td>
-      <td>0.647855</td>
-      <td>0.279881</td>
-      <td>0.357061</td>
-      <td>5.325440</td>
-    </tr>
-    <tr>
-      <th>std</th>
-      <td>0.446510</td>
-      <td>5.485960</td>
-      <td>1.544084</td>
-      <td>2.235625</td>
-      <td>27.913634</td>
-    </tr>
-    <tr>
-      <th>min</th>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>25%</th>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-    </tr>
-    <tr>
-      <th>50%</th>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>1.000000</td>
-    </tr>
-    <tr>
-      <th>75%</th>
-      <td>1.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>0.000000</td>
-      <td>2.000000</td>
-    </tr>
-    <tr>
-      <th>max</th>
-      <td>8.000000</td>
-      <td>349.000000</td>
-      <td>161.000000</td>
-      <td>380.000000</td>
-      <td>699.000000</td>
-    </tr>
-  </tbody>
-</table>
-</div>
 
 The code shows a focused analysis of the numeric columns in the dataset (**Number.of.Engines, Total.Fatal.Injuries, Total.Serious.Injuries, Total.Minor.Injuries, Total.Uninjured**). 
 
@@ -557,7 +465,21 @@ plt.show()
 
 
 
+
+
+
+
+
+
 ![alt text](images\image.png)
+
+
+
+
+
+
+
+
 
 
 
@@ -581,7 +503,25 @@ plt.grid(axis='x', linestyle='--', alpha=0.9)
 
 
 
+
+
+
+
+
+
+
+
 ![alt text](images\image-1.png)
+
+
+
+
+
+
+
+
+
+
 
 
 3. Specific features associated with lower risk
@@ -599,7 +539,24 @@ plt.show()
 ```
 
 
+
+
+
+
+
+
+
+
 ![alt text](images\image-2.png)
+
+
+
+
+
+
+
+
+
 
 
 ### RECOMMENDATION
