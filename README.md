@@ -46,11 +46,6 @@ df.head()
 ```python
 # df.info() summarizes the dataset's structure.
 df.info()
-
-
-
-print(f"Count of null values in column (Model) :", df['Model'].isnull().sum()) 
-
 ```
 
 
