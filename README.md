@@ -483,7 +483,7 @@ plt.show()
 
 
 
-![png](images\image.png)
+![png](images/image.png)
 
 
 
@@ -536,7 +536,7 @@ plt.grid(axis='x', linestyle='--', alpha=0.9)
 
 
 
-![alt text](images\image-1.png)
+![alt text](images/image-1.png)
 
 
 
@@ -572,7 +572,7 @@ plt.show()
 
 
 
-![alt text](images\image-2.png)
+![alt text](images/image-2.png)
 
 
 
