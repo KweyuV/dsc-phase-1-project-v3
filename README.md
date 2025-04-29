@@ -1,6 +1,5 @@
 ## Final Project Submission
 
-Please fill out:
 * Student name: VALENTINE MARANGALA KWEYU
 * Student pace: part time
 * Scheduled project review date/time: 29/04/2025 
