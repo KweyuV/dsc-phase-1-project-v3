@@ -5,7 +5,7 @@ Please fill out:
 * Student pace: part time
 * Scheduled project review date/time: 29/04/2025 
 * Instructor name: MWIKALI
-* Blog post URL:  https://public.tableau.com/app/profile/valentine.kweyu/viz/AVIATIONANALYSISDASHBOARD/AICRAFTRISKANALYSISDASHBOARD?publish=yes
+* Blog post URL:  https://public.tableau.com/app/profile/valentine.kweyu/viz/aviation_risk_analysis/AICRAFTRISKANALYSISDASHBOARD?publish=yes
 
 ## PROJECT OVERVIEW
 For this project, we will use data cleaning, imputation, analysis, and visualization to generate insights for a business stakeholder interested in purchasing and operating airplanes for commercial & private enterprises.
